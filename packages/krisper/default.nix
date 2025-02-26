@@ -1,33 +1,11 @@
 {
   lib,
-  fetchurl,
-  writers,
   xdg-utils,
   findutils,
+  callPackage,
   writeShellApplication,
-  python3Packages,
 }: let
-  krisp-patcher =
-    writers.writePython3Bin "krisp-patcher"
-    {
-      libraries = with python3Packages; [
-        capstone
-        pyelftools
-      ];
-      flakeIgnore = [
-        "E501" # line too long (82 > 79 characters)
-        "F403" # 'from module import *' used; unable to detect undefined names
-        "F405" # name may be undefined, or defined from star imports: module
-      ];
-    }
-    (
-      builtins.readFile (
-        fetchurl {
-          url = "https://raw.githubusercontent.com/sersorrel/sys/afc85e6b249e5cd86a7bcf001b544019091b928c/hm/discord/krisp-patcher.py";
-          sha256 = "sha256-h8Jjd9ZQBjtO3xbnYuxUsDctGEMFUB5hzR/QOQ71j/E=";
-        }
-      )
-    );
+  krisp-patcher = callPackage ../krisp-patcher {};
 in
   (writeShellApplication {
     name = "krisper";
