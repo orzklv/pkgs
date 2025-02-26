@@ -43,4 +43,4 @@ jobs:
         uses: DeterminateSystems/flakehub-cache-action@main
 
       - name: Check up flake configuration
-        run: nix flake show --all-systems --json | jq  '.packages."x86_64-linux"|keys[]'| xargs -I {} nix build .#{}
+        run: nix flake show --json | jq  '.packages."x86_64-linux"|keys[]'| xargs -I {} nix build .#{}
