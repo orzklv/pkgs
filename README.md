@@ -18,11 +18,18 @@ This repository actually used to be within my [nix configuration](https://github
 
 ## Packages
 
-- Dev Clean: clean your developer directory from builds & temporary files
-- Force Push: do force push using your github bearer token
-- Google: start googling right from your terminal
-- Krisper: discord krisp patcher for nixos
-- Org Location: change "location" of a github organization
+- [Dev Clean](./packages/dev-clean/default.nix): clean your developer directory from builds & temporary files
+- [Force Push](./packages/force-push/default.nix): do force push using your github bearer token
+- [Google](./packages/google/default.nix): start googling right from your terminal
+- [Krisper](./packages/krisper/default.nix): discord krisp patcher for nixos
+- [Org Location](./packages/org-location/default.nix): change "location" of a github organization
+
+Packages can be used via `nix run` by calling it's names. You can refer to this example shown below:
+
+```shell
+# Names are always lowercase spaced with '-'
+nix run github:orzklv/pkgs#<name-here>
+```
 
 ## Overlays
 
