@@ -4,7 +4,7 @@
   writers,
   python3Packages,
 }:
-writers.writePython3Bin "krisp-patcher"
+writers.writePython3Bin "kripach"
 {
   libraries = with python3Packages; [
     capstone

@@ -5,11 +5,11 @@
   callPackage,
   writeShellApplication,
 }: let
-  krisp-patcher = callPackage ../krisp-patcher {};
+  kripach = callPackage ../kripach {};
 in
   (writeShellApplication {
     name = "krisper";
-    runtimeInputs = [xdg-utils krisp-patcher findutils];
+    runtimeInputs = [xdg-utils kripach findutils];
     text = builtins.readFile ./krisper.sh;
   })
   // {

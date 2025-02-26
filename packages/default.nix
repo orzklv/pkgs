@@ -7,4 +7,5 @@
   org-location = pkgs.callPackage ./org-location {};
   google = pkgs.callPackage ./google {};
   krisper = pkgs.callPackage ./krisper {};
+  kripach = pkgs.callPackage ./kripach {};
 }
