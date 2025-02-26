@@ -46,5 +46,5 @@ jobs:
         if: ${{ matrix.os != 'self-hosted' }}
         uses: DeterminateSystems/flakehub-cache-action@main
 
-      - name: Check up flake configuration
+      - name: Build all packages
         run: nix flake show --json | jq  '.packages."x86_64-linux"|keys[]'| xargs -I {} nix build .#{}
