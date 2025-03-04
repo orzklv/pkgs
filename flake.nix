@@ -18,14 +18,11 @@
   };
 
   outputs = {
-    self,
     nixpkgs,
     flake-utils,
-  } @ inputs: let
-    # Self instance pointer
-    outputs = self;
-  in
-    # Attributes for each system
+    ...
+  } @ inputs:
+  # Attributes for each system
     flake-utils.lib.eachDefaultSystem (
       system: let
         pkgs = nixpkgs.legacyPackages.${system};
