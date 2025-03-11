@@ -5,13 +5,18 @@
   #  / ____/ /_/ / /__/ ,< / /_/ / /_/ /  __(__  )
   # /_/    \__,_/\___/_/|_|\__,_/\__, /\___/____/
   #                             /____/
-  description = "Sokhibjon's helpful packages";
+  description = "Sokhibjon's repository // packages";
 
   # inputs are other flakes you use within your own flake, dependencies
   # for your flake, etc.
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+
+    # Unstable Nixpkgs
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    # Also see the 'unstable-packages' overlay at 'overlays/unstable.nix'.
+    # Don't forget to align unstable repo with user's flake inputs!
 
     # Flake utils for eachSystem
     flake-utils.url = "github:numtide/flake-utils";
@@ -45,6 +50,9 @@
     //
     # Attribute from static evaluation
     {
+      # Personal functions and extensions
+      lib = import ./lib {inherit (nixpkgs) lib;};
+
       # Your custom packages and modifications, exported as overlays
       overlays = import ./overlays {inherit inputs;};
     };

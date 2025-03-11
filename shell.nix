@@ -10,7 +10,7 @@
   ...
 }:
 pkgs.stdenv.mkDerivation {
-  name = "pack-dev";
+  name = "pkgs";
 
   nativeBuildInputs = with pkgs; [
     jq
