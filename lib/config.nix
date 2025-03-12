@@ -1,4 +1,4 @@
-{lib}: {
+{lib}: let
   # WARNING!
   # Becomes impure when opath provided
   attrSystem = {
@@ -12,10 +12,10 @@
     path = alias: opath + "/${type}/${alias}/configuration.nix";
 
     #   Name  =                Value
-    # "Lorem" = self.lib.config.makeSystem "station";
+    # "Lorem" = orzklv.lib.config.makeSystem "station";
     system = attr: {
       inherit (attr) name;
-      value = lib.config.makeSystem {
+      value = makeSystem {
         inherit inputs outputs type;
         path = path attr.alias;
       };
@@ -41,10 +41,10 @@
     path = name: opath + "/${type}/${lib.toLower name}/configuration.nix";
 
     #   Name  =                Value
-    # "Lorem" = self.lib.config.makeSystem "station";
+    # "Lorem" = orzklv.lib.config.makeSystem "station";
     system = name: {
       inherit name;
-      value = lib.config.makeSystem {
+      value = makeSystem {
         inherit inputs outputs type;
         path = path name;
       };
@@ -92,7 +92,7 @@
     map =
       lib.mapAttrs (
         name: value:
-          lib.config.attrHome {
+          attrHome {
             inherit (value) repo user arch;
             inherit inputs outputs name;
             path = opath;
@@ -121,7 +121,7 @@
   }: let
     main = {
       name = "${user}@${name}";
-      value = lib.config.makeHome {
+      value = makeHome {
         inherit inputs outputs path arch repo;
       };
     };
@@ -157,4 +157,6 @@
         path # ./home.nix
       ];
     };
+in {
+  inherit attrSystem mapSystem makeSystem mapHome attrHome makeHome;
 }
