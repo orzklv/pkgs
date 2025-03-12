@@ -114,9 +114,9 @@ Repository includes many useful overlays which enables you to manipulate your `p
 
 You may obtain list of available overlays either from [overlays/default.nix](./overlays/default.nix) or refer to this list (might be outdated):
 
-- Additions: merging my packages to your `pkgs` instance, so you can call them within pkgs right away.
-- Modifications: some modifications for pre-existing pkgs delivered from your `inputs.nixpkgs`.
-- Unstable: Binding unstable nixpkgs channel to `pkgs.unstable` variable for calling unstable packages.
+- [Additions](./overlays/additions.nix): merging my packages to your `pkgs` instance, so you can call them within pkgs right away.
+- [Modifications](./overlays/modifications.nix): some modifications for pre-existing pkgs delivered from your `inputs.nixpkgs`.
+- [Unstable](./overlays/unstable.nix): Binding unstable nixpkgs channel to `pkgs.unstable` variable for calling unstable packages.
 
 ## Thanks
 
