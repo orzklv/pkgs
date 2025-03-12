@@ -31,6 +31,15 @@ Packages can be used via `nix run` by calling it's names. You can refer to this 
 nix run github:orzklv/pkgs#<name-here>
 ```
 
+## Lib
+
+I have a few useful functions initially created for myself to abstract certain things in my nix configurations. However, later I decided to ship it as a library which you can easily add to `lib` just by mergeng my lib to your nixpkgs lib as following:
+
+```nix
+  # Nixpkgs, Home-Manager and orzklv's helpful functions
+  lib = nixpkgs.lib // home-manager.lib // orzklv.lib;
+```
+
 ## Overlays
 
 Repository includes a plug'n'use overlay to add my packages within your `pkgs` instance to call right from your `pkgs`. You should call it something like that:
@@ -39,9 +48,11 @@ Repository includes a plug'n'use overlay to add my packages within your `pkgs` i
 # First, let's add this repo to your inputs
 {
   inputs = {
-    orzklv-pkgs = {
+    orzklv = {
       url = "github:orzklv/pkgs";
       inputs.nixpkgs.follows = "nixpkgs";
+      # If you're going to use unstable overlay
+      inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
     };
   };
 }
@@ -53,7 +64,7 @@ Repository includes a plug'n'use overlay to add my packages within your `pkgs` i
     # You can add overlays here!
     overlays = [
       ...
-      inputs.orzklv-pkgs.overlays.pkgs
+      inputs.orzklv.overlays.pkgs
     ];
   };
 }

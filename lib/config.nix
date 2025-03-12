@@ -15,7 +15,7 @@
     # "Lorem" = self.lib.config.makeSystem "station";
     system = attr: {
       inherit (attr) name;
-      value = lib.orzklv.config.makeSystem {
+      value = lib.config.makeSystem {
         inherit inputs outputs type;
         path = path attr.alias;
       };
@@ -44,7 +44,7 @@
     # "Lorem" = self.lib.config.makeSystem "station";
     system = name: {
       inherit name;
-      value = lib.orzklv.config.makeSystem {
+      value = lib.config.makeSystem {
         inherit inputs outputs type;
         path = path name;
       };
@@ -92,7 +92,7 @@
     map =
       lib.mapAttrs (
         name: value:
-          lib.orzklv.config.attrHome {
+          lib.config.attrHome {
             inherit (value) repo user arch;
             inherit inputs outputs name;
             path = opath;
@@ -121,7 +121,7 @@
   }: let
     main = {
       name = "${user}@${name}";
-      value = lib.orzklv.config.makeHome {
+      value = lib.config.makeHome {
         inherit inputs outputs path arch repo;
       };
     };
